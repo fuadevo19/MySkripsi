@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+  <style>
+    body {
+      background-color: #0f0c29;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 1; /* Lebih terang */
+      filter: blur(200px); 
+      mix-blend-mode: screen;
+      z-index: 0;
+    }
+
+    .blob1 {
+      width: clamp(500px, 30vw, 500px);
+      height: clamp(500px, 30vw, 500px);
+      background: radial-gradient(circle, #ff00ff, #6600ff); /* warna lebih cerah */
+      top: 50%;
+      left: 5%;
+      transform: translate(-50%, -50%);
+      animation: spinBlob1 10s linear infinite;
+    }
+
+    .blob2 {
+      width: clamp(500px, 30vw, 500px);
+      height: clamp(500px, 30vw, 500px);
+      background: radial-gradient(circle, #00ffff, #0066ff); /* warna lebih cerah */
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: spinBlob2 10s linear infinite;
+    }
+
+    @keyframes spinBlob1 {
+      0%   { transform: rotate(0deg) translateX(25vw) rotate(0deg); }
+      100% { transform: rotate(360deg) translateX(25vw) rotate(-360deg); }
+    }
+
+    @keyframes spinBlob2 {
+      0%   { transform: rotate(180deg) translateX(35vw) rotate(0deg); }
+      100% { transform: rotate(540deg) translateX(35vw) rotate(-360deg); }
+    }
+
+
+  </style>
+</head>
+
+<body class="text-white font-sans relative overflow-hidden">
+
+  <!-- Background Blobs -->
+   <div class="overflow-hidden">
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+   </div>
+  
+
+  <!-- Glass Header -->
+  <header class="backdrop-blur-md bg-white/20 shadow-lg border-b border-white/30 fixed w-full top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-center">
+      <h1 class="text-xl font-semibold text-white">Tajwid Detection</h1>
+    </div>
+  </header>
+
+  <div class="mt-[100px] z-10 flex flex-col items-center text-center">
+    <h1 class="font-semibold text-3xl mb-9">Selamat datang sistem deteksi tajwid nun mati</h1>
+    <h1 class="font-bold text-lg">klik tombol untuk deteksi!</h1>
+  </div>
+  
+
+  <!-- Tombol di bawah header -->
+  <div class="flex justify-center mt-[30px] relative z-10">
+    <a href="{{ url_for('deteksi') }}"
+       class="w-[300px] h-[300px] rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white flex items-center justify-center text-3xl font-semibold shadow-lg hover:bg-white/30 transition">
+      Mulai
+    </a>
+  </div>
+
+</body>
+</html>

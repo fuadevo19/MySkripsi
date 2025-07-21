@@ -64,7 +64,11 @@ def detect_and_draw(image_path, threshold=0.5, iou_thresh=0.3):
                 final_labels.append(class_idx)
                 final_scores.append(cls_scores[idx])
 
-    # Plot
+    # Tidak ada deteksi
+    if not final_boxes:
+        return None
+
+    # Plot hasil
     fig, ax = plt.subplots(figsize=(10, 6))
     ax.imshow(original_img)
     scale_x = orig_w / 224
@@ -110,6 +114,10 @@ def detect():
     file.save(filepath)
 
     result_image = detect_and_draw(filepath)
+
+    if result_image is None:
+        # Tidak terdeteksi apapun
+        return jsonify({'message': 'Tajwid nun mati tidak terdeteksi'}), 204
 
     return send_file(result_image, mimetype='image/png')
 
